@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>On Leave</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="overflow-hidden">
+    <div class="place-self-center flex items-center h-screen">
+        <div class="justify-center items-center"></div>
+            <div id="countdown" class="text-9xl text-center"></div>
+        </div>
+    </div>
+    
+
+    <!-- Your code goes here -->
+    <script>
+        // Set the date and time to count down to
+        var countDownDate = new Date("February 6, 2025 12:00:00 GMT+0200").getTime();
+
+        // Update the countdown every 1 second
+        var countdown = setInterval(function() {
+            // Get the current date and time
+            var now = new Date().getTime();
+
+            // Calculate the distance between now and the countdown date
+            var distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown in the HTML element with id="countdown"
+            document.getElementById("countdown").innerHTML = "Boys Weekend <br><br> 🍺" + days + "d " + hours + "h " + minutes + "m " + seconds + "s " + "🍺" ;
+
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "Countdown is over!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
