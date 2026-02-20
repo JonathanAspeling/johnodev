@@ -718,6 +718,11 @@ function displayQuestion(index) {
 function selectOption(optionKey) {
   const currentQuestion = assessmentData[appState.currentQuestionIndex];
 
+  // Guard against rapid/double clicks during the fade-out transition
+  if (appState.userAnswers.some(a => a.questionNumber === currentQuestion.number)) {
+    return;
+  }
+
   // Record the answer
   appState.userAnswers.push({
     questionNumber: currentQuestion.number,
@@ -816,6 +821,7 @@ function displayDetailedBreakdown() {
 
   assessmentData.forEach((question, index) => {
     const userAnswer = appState.userAnswers.find(a => a.questionNumber === question.number);
+    if (!userAnswer) return;
     const selectedOption = userAnswer.selectedOption;
 
     const questionDiv = document.createElement('div');
